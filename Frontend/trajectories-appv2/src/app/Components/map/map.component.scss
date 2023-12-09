@@ -1,0 +1,18 @@
+.map {
+  width: 100vw;
+  height: 100vh
+}
+
+.spinner {
+  margin:auto;
+}
+
+button {
+  position: relative;
+  z-index: 1000; /* Adjust the value based on your needs */
+  margin: 10px;
+}
+
+.beijingButton{
+  margin-left: 50px;
+}

@@ -1,0 +1,102 @@
+<mat-card class="form-container">
+  <form [formGroup]="aggregationsForm" (ngSubmit)="onSubmit()" class="form-container">
+
+
+    <div class="flexClass">
+
+      <div>
+        <div *ngFor="let field of noRangeGroupFields" class="groupField">
+          <mat-slide-toggle formControlName="{{ field }}"> {{ getLabelForField(field)  | titlecase}} </mat-slide-toggle>
+
+        </div>
+      </div>
+      <div>
+        <div *ngFor="let field of rangesGroupFields1; let i = index">
+          <mat-label>{{ getLabelForField(field) | titlecase }}</mat-label>
+          <mat-slide-toggle formControlName="{{ field }}"> </mat-slide-toggle>
+          <mat-form-field appearance="fill">
+            <mat-label>{{getLabelForField(rangeFields[i]) | titlecase}}</mat-label>
+
+            <input matInput formControlName="{{rangeFields[i]}}">
+          </mat-form-field>
+
+        </div>
+      </div>
+      <div>
+        <div *ngFor="let field of rangesGroupFields2; let i = index">
+          <mat-label>{{ getLabelForField(field) }}</mat-label>
+          <mat-slide-toggle formControlName="{{ field }}">  </mat-slide-toggle>
+          <mat-form-field appearance="fill">
+            <mat-label>{{getLabelForField(rangeFields[i+6]) | titlecase}}</mat-label>
+
+            <input matInput formControlName="{{rangeFields[i+6]}}">
+          </mat-form-field>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="form-row" >
+      <button mat-raised-button color="primary" type="submit">Submit</button>
+      <button mat-raised-button color="accent" (click)="goHome()">Go back</button>
+    </div>
+  </form>
+</mat-card>
+<mat-progress-bar *ngIf="!showResults" mode="indeterminate"></mat-progress-bar>
+
+<div *ngIf="showResults">
+  <!-- your-component.component.html -->
+  <div class="info-container">
+    <div class="info-item">
+      <mat-label>Total Aggregations:</mat-label>
+
+      {{totalAggregations}}
+    </div>
+
+    <div class="info-item">
+      <mat-label>Full Time (MongoDB):</mat-label>
+      {{fullTimeMongoDB}}
+    </div>
+
+    <div class="info-item">
+      <mat-label>Full Time (CosmosDB):</mat-label>
+      {{fullTimeCosmosDB}}
+    </div>
+
+    <div class="info-item">
+      <mat-label>Query Time (MongoDB):</mat-label>
+      {{queryTimeMongoDB}}
+    </div>
+
+    <div class="info-item">
+      <mat-label>Query Time (CosmosDB):</mat-label>
+      {{queryTimeCosmosDB}}
+    </div>
+  </div>
+  <!-- Other content... -->
+  <div class="mat-elevation-z8">
+    <mat-table [dataSource]="dataSource" matSort >
+
+      <!-- Add columns based on displayedColumns array -->
+      <ng-container *ngFor="let column of displayedColumns" [matColumnDef]="column">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{ getLabelForField(column) | titlecase }} </mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          <ng-container >
+            {{ element[column] }}
+          </ng-container>
+        </mat-cell>
+      </ng-container>
+
+
+      <!-- Column definitions -->
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+
+    <!-- Paginator -->
+    <mat-paginator [pageSizeOptions]="pageSizeOptions"  showFirstLastButtons></mat-paginator>
+
+  </div>
+
+</div>

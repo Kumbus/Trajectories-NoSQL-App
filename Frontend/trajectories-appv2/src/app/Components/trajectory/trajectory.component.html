@@ -1,0 +1,115 @@
+<!-- trajectory.component.html -->
+<mat-card *ngIf="trajectory" color="accent" class="card">
+  <mat-card-header>
+    <mat-card-title>Trajectory Details</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <mat-card class="smallCard">
+      <mat-card-header class="headerClass">
+        <mat-card-title>General info</mat-card-title>
+      </mat-card-header>
+      <mat-card-content class="tile">
+        <ul>
+          <li><strong>City:</strong> {{ trajectory.city }}</li>
+          <li><strong>Start Date:</strong> {{ trajectory.startDate }}</li>
+          <li><strong>End Date:</strong> {{ trajectory.endDate  }}</li>
+          <li><strong>Average Speed:</strong> {{ trajectory.averageSpeed }} m/s</li>
+          <li><strong>Duration:</strong> {{ trajectory.duration }} min</li>
+          <li><strong>Length:</strong> {{ trajectory.length }} m</li>
+        </ul>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card class="smallCard">
+      <mat-card-header class="headerClass">
+        <mat-card-title>Weather</mat-card-title>
+      </mat-card-header>
+      <mat-card-content class="tile">
+        <ul>
+          <li><strong>Temperature:</strong> {{ trajectory.weather.temperature }} °C</li>
+          <li><strong>Air Pressure:</strong> {{ trajectory.weather.airPressure }} hPa</li>
+          <li><strong>Humidity:</strong> {{ trajectory.weather.humidity }}%</li>
+          <li><strong>Wind Speed:</strong> {{ trajectory.weather.windSpeed }} m/s</li>
+          <li><strong>Wind Direction:</strong> {{ trajectory.weather.windDirection }}</li>
+          <li><strong>Precipitation:</strong> {{ trajectory.weather.precipitation }}</li>
+          <li><strong>Precipitation Duration:</strong> {{ trajectory.weather.precipitationDuration }}</li>
+        </ul>
+      </mat-card-content>
+    </mat-card>
+
+
+
+    <mat-card class="smallCard">
+      <mat-card-header class="headerClass">
+        <mat-card-title>Country Population</mat-card-title>
+      </mat-card-header>
+      <mat-card-content class="tile">
+        <ul>
+          <li><strong>Total:</strong> {{ trajectory.countryPopulation.total }}</li>
+          <li><strong>Male Percentage:</strong> {{ trajectory.countryPopulation.malePercentage }}</li>
+          <li><strong>Female Percentage:</strong> {{ trajectory.countryPopulation.femalePercentage }}</li>
+          <li><strong>Density:</strong> {{ trajectory.countryPopulation.density }}</li>
+          <li><strong>Urban Percentage:</strong> {{ trajectory.countryPopulation.urbanPercentage }}</li>
+          <li><strong>Rural Percentage:</strong> {{ trajectory.countryPopulation.ruralPercentage }}</li>
+          <li><strong>Age 0-14 Percentage:</strong> {{ trajectory.countryPopulation.age014Percentage }}</li>
+          <li><strong>Age 15-64 Percentage:</strong> {{ trajectory.countryPopulation.age1564Percentage }}</li>
+          <li><strong>Age 65+ Percentage:</strong> {{ trajectory.countryPopulation.age65Percentage }}</li>
+          <li><strong>Mortality in Road Traffic (per 100,000):</strong> {{ trajectory.countryPopulation.mortalityInRoadTrafficPer100000 }}</li>
+        </ul>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card class="smallCard">
+      <mat-card-header class="headerClass">
+        <mat-card-title>Economic</mat-card-title>
+      </mat-card-header>
+      <mat-card-content class="tile">
+        <ul>
+          <li><strong>GDP Per Capita (Constant LCU):</strong> {{ trajectory.economic.gdpPerCapitaConstantLCU }}</li>
+          <li><strong>GDP Per Capita (Current LCU):</strong> {{ trajectory.economic.gdpPerCapitaCurrentLCU }}</li>
+          <li><strong>Inflation:</strong> {{ trajectory.economic.inflation }}</li>
+          <li><strong>Unemployment (National Estimate):</strong> {{ trajectory.economic.uneploymentNationalEstimate }}</li>
+          <li><strong>Unemployment (Modeled ILO Estimate):</strong> {{ trajectory.economic.uneploymentModeledILOEstimate }}</li>
+          <li><strong>Departures in International Tourism:</strong> {{ trajectory.economic.departuresInInternationalTourism }}</li>
+          <li><strong>Arrivals in International Tourism:</strong> {{ trajectory.economic.arrivalsInInternationalTourism }}</li>
+          <li><strong>Private Investments in Transport:</strong> {{ trajectory.economic.privateInvestmentsInTransport }}</li>
+        </ul>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card class="smallCard">
+      <mat-card-header class="headerClass">
+        <mat-card-title>Fuel Prices</mat-card-title>
+      </mat-card-header>
+      <mat-card-content class="tile">
+        <ul>
+          <li><strong>Gasoline Price:</strong> {{ trajectory.fuelPrice.gasolinePrice }} $/L</li>
+          <li><strong>Diesel Price:</strong> {{ trajectory.fuelPrice.dieselPrice }} $/L</li>
+        </ul>
+      </mat-card-content>
+    </mat-card>
+
+
+    <mat-card class="smallCard">
+      <mat-card-header class="headerClass">
+        <mat-card-title>Emissions</mat-card-title>
+      </mat-card-header>
+      <mat-card-content class="tile">
+        <ul>
+          <li><strong>CO2 Emissions from Transport Percentage:</strong> {{ trajectory.emissions?.cO2EmissionsFromTransportPercentage }}</li>
+          <li><strong>CO2 Emissions from Gaseous Fuel Consumption Percentage:</strong> {{ trajectory.emissions?.cO2EmissionsFromGaseousFuelConsumptionPercentage }}</li>
+        </ul>
+      </mat-card-content>
+    </mat-card>
+
+  </mat-card-content>
+</mat-card>
+
+<mat-spinner *ngIf="!mapReady" class="spinner"></mat-spinner>
+
+
+<div *ngIf="mapReady" class="map"
+     leaflet
+     [leafletOptions]="options"(leafletMapReady)="onMapReady($event)"
+     >
+</div>

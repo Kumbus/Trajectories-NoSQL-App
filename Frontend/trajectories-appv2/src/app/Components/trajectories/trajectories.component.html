@@ -1,0 +1,264 @@
+<!-- filter-form.component.html -->
+
+<form [formGroup]="filterForm" (ngSubmit)="onSubmit()" class="form-container">
+  <!-- SimpleQueryFilter Fields -->
+  <div class="form-row">
+    <mat-form-field class="form-field">
+      <mat-label>Cities</mat-label>
+      <input matInput placeholder="Cities" formControlName="cities">
+    </mat-form-field>
+
+    <mat-form-field class="form-field">
+      <mat-label>Average Speed From</mat-label>
+      <input matInput placeholder="Average Speed From" type="number" formControlName="averageSpeedFrom" min="0">
+    </mat-form-field>
+
+    <mat-form-field class="form-field">
+      <mat-label>Average Speed To</mat-label>
+      <input matInput placeholder="Average Speed To" type="number" formControlName="averageSpeedTo" min="0">
+    </mat-form-field>
+
+    <mat-form-field class="form-field">
+      <mat-label>Duration From</mat-label>
+      <input matInput placeholder="Duration From" type="number" formControlName="durationFrom" min="0">
+    </mat-form-field>
+
+    <mat-form-field class="form-field">
+      <mat-label>Duration To</mat-label>
+      <input matInput placeholder="Duration To" type="number" formControlName="durationTo" min="0">
+    </mat-form-field>
+
+    <mat-form-field class="form-field">
+      <mat-label>Length From</mat-label>
+      <input matInput placeholder="Length From" type="number" formControlName="lengthFrom" min="0">
+    </mat-form-field>
+
+    <mat-form-field class="form-field">
+      <mat-label>Length To</mat-label>
+      <input matInput placeholder="Length To" type="number" formControlName="lengthTo" min="0">
+    </mat-form-field>
+  </div>
+  <div class="form-row">
+    <mat-form-field class="form-field">
+      <mat-label>Start Date From</mat-label>
+      <input matInput placeholder="Start Date From" type="date" formControlName="startDateFrom">
+    </mat-form-field>
+
+    <mat-form-field class="form-field">
+      <mat-label>Start Date To</mat-label>
+      <input matInput placeholder="Start Date To" type="date" formControlName="startDateTo">
+    </mat-form-field>
+
+    <mat-form-field class="form-field">
+      <mat-label>End Date From</mat-label>
+      <input matInput placeholder="End Date From" type="date" formControlName="endDateFrom">
+    </mat-form-field>
+
+    <mat-form-field class="form-field">
+      <mat-label>End Date To</mat-label>
+      <input matInput placeholder="End Date To" type="date" formControlName="endDateTo">
+    </mat-form-field>
+  </div>
+
+  <!-- WeatherFilter Fields -->
+  <div formGroupName="weatherFilter">
+    <div class="form-row">
+      <mat-form-field class="form-field">
+        <mat-label>Temperature From</mat-label>
+        <input matInput placeholder="Temperature From" type="number" formControlName="temperatureFrom">
+      </mat-form-field>
+
+      <mat-form-field class="form-field">
+        <mat-label>Temperature To</mat-label>
+        <input matInput placeholder="Temperature To" type="number" formControlName="temperatureTo">
+      </mat-form-field>
+
+      <mat-form-field class="form-field">
+        <mat-label>Air Pressure From</mat-label>
+        <input matInput placeholder="Air Pressure From" type="number" formControlName="airPressureFrom" min="0">
+      </mat-form-field>
+
+      <mat-form-field class="form-field">
+        <mat-label>Air Pressure To</mat-label>
+        <input matInput placeholder="Air Pressure To" type="number" formControlName="airPressureTo" min="0">
+      </mat-form-field>
+
+      <mat-form-field class="form-field">
+        <mat-label>Humidity From</mat-label>
+        <input matInput placeholder="Humidity From" type="number" formControlName="humidityFrom" min="0">
+      </mat-form-field>
+
+      <mat-form-field class="form-field">
+        <mat-label>Humidity To</mat-label>
+        <input matInput placeholder="Humidity To" type="number" formControlName="humidityTo" min="0">
+      </mat-form-field>
+    </div>
+    <div class="form-row">
+      <mat-form-field class="form-field">
+        <mat-label>Wind Speed From</mat-label>
+        <input matInput placeholder="Wind Speed From" type="number" formControlName="windSpeedFrom" min="0">
+      </mat-form-field>
+
+      <mat-form-field class="form-field">
+        <mat-label>Wind Speed To</mat-label>
+        <input matInput placeholder="Wind Speed To" type="number" formControlName="windSpeedTo" min="0">
+      </mat-form-field>
+
+      <mat-form-field class="form-field">
+        <mat-label>Precipitation From</mat-label>
+        <input matInput placeholder="Precipitation From" type="number" formControlName="precipitationFrom" min="0">
+      </mat-form-field>
+
+      <mat-form-field class="form-field">
+        <mat-label>Precipitation To</mat-label>
+        <input matInput placeholder="Precipitation To" type="number" formControlName="precipitationTo" min="0">
+      </mat-form-field>
+
+      <mat-form-field class="form-field">
+        <mat-label>Precipitation Duration From</mat-label>
+        <input matInput placeholder="Precipitation Duration From" type="number" formControlName="precipitationDurationFrom" min="0">
+      </mat-form-field>
+
+      <mat-form-field class="form-field">
+        <mat-label>Precipitation Duration To</mat-label>
+        <input matInput placeholder="Precipitation Duration To" type="number" formControlName="precipitationDurationTo" min="0">
+      </mat-form-field>
+
+      <mat-form-field class="form-field">
+        <mat-label>Wind Directions</mat-label>
+        <input matInput placeholder="Wind Directions" formControlName="windDirections">
+      </mat-form-field>
+    </div>
+  </div>
+  <!-- PointFilter Fields -->
+  <div class="form-row" formGroupName="pointFilter">
+    <mat-form-field class="form-field">
+      <mat-label>Area From</mat-label>
+      <input matInput placeholder="Area From" type="number" formControlName="areaFrom" min="0">
+    </mat-form-field>
+
+    <mat-form-field class="form-field">
+      <mat-label>Area To</mat-label>
+      <input matInput placeholder="Area To" type="number" formControlName="areaTo" min="0">
+    </mat-form-field>
+
+    <mat-form-field class="form-field">
+      <mat-label>Population From</mat-label>
+      <input matInput placeholder="Population From" type="number" formControlName="populationFrom" min="0">
+    </mat-form-field>
+
+    <mat-form-field class="form-field">
+      <mat-label>Population To</mat-label>
+      <input matInput placeholder="Population To" type="number" formControlName="populationTo" min="0">
+    </mat-form-field>
+
+    <mat-form-field class="form-field">
+      <mat-label>Density From</mat-label>
+      <input matInput placeholder="Density From" type="number" formControlName="densityFrom" min="0">
+    </mat-form-field>
+
+    <mat-form-field class="form-field">
+      <mat-label>Density To</mat-label>
+      <input matInput placeholder="Density To" type="number" formControlName="densityTo" min="0">
+    </mat-form-field>
+
+    <mat-form-field class="form-field">
+      <mat-label>Names</mat-label>
+      <input matInput placeholder="Names" formControlName="names">
+    </mat-form-field>
+
+    <mat-form-field class="form-field">
+      <mat-label>Parent Names</mat-label>
+      <input matInput placeholder="Parent Names" formControlName="parentNames">
+    </mat-form-field>
+  </div>
+  <div class="form-row" >
+    <button mat-raised-button color="primary" type="submit">Submit</button>
+    <button mat-raised-button color="accent" (click)="openMap()">Open map</button>
+    <button mat-raised-button color="warn" (click)="goToAggregations()">Aggregate</button>
+  </div>
+
+</form>
+
+<mat-progress-bar *ngIf="!showResults" mode="indeterminate"></mat-progress-bar>
+
+
+<div *ngIf="showResults">
+  <!-- your-component.component.html -->
+  <div class="info-container">
+    <div class="info-item">
+      <mat-label>Total Trajectories:</mat-label>
+
+      {{totalTrajectories}}
+    </div>
+
+    <div class="info-item">
+      <mat-label>Full Time (MongoDB):</mat-label>
+      {{fullTimeMongoDB}}
+    </div>
+
+    <div class="info-item">
+      <mat-label>Full Time (CosmosDB):</mat-label>
+      {{fullTimeCosmosDB}}
+    </div>
+
+    <div class="info-item">
+      <mat-label>Query Time (MongoDB):</mat-label>
+      {{queryTimeMongoDB}}
+    </div>
+
+    <div class="info-item">
+      <mat-label>Query Time (CosmosDB):</mat-label>
+      {{queryTimeCosmosDB}}
+    </div>
+  </div>
+  <!-- Other content... -->
+  <div class="mat-elevation-z8">
+    <mat-table [dataSource]="dataSource" matSort >
+
+      <!-- Add columns based on displayedColumns array -->
+      <ng-container *ngFor="let column of displayedColumns" [matColumnDef]="column">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{ column }} </mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          <!-- Check if it's the last column -->
+          <ng-container *ngIf="column !== 'details'; else detailsButton">
+            {{ element[column] }}
+          </ng-container>
+          <ng-template #detailsButton>
+            <!-- Add a button in the last column -->
+            <button mat-icon-button color="primary" (click)="openDetails(element['idInFile'])">
+              <mat-icon>info</mat-icon>
+            </button>
+          </ng-template>
+        </mat-cell>
+      </ng-container>
+
+
+      <!-- Column definitions -->
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+
+    <!-- Paginator -->
+    <mat-paginator [pageSizeOptions]="pageSizeOptions" [pageSize]="pageSize" [pageIndex]="pageIndex" (page)="onPageChange($event)" showFirstLastButtons></mat-paginator>
+
+  </div>
+
+</div>
+
+<!-- <mat-card class="example-result-card">
+      <mat-card-content>
+        <mat-label>Average Speed From </mat-label>
+        <div class="example-label-container">
+          <label id="example-name-label" class="example-name-label">Value</label>
+          <label class="example-value-label">{{sliderFrom.value}}</label>
+          <label class="example-value-label">{{sliderTo.value}}</label>
+        </div>
+        <mat-slider min="0" max="100">
+          <input  formControlName="averageSpeedFrom" matSliderStartThumb #sliderFrom>
+          <input  formControlName="averageSpeedTo" matSliderEndThumb #sliderTo>
+        </mat-slider>
+
+    </mat-card-content>
+  </mat-card>-->

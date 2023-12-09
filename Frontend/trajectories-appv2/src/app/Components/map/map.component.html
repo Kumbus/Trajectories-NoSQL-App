@@ -1,0 +1,13 @@
+
+  <mat-spinner *ngIf="!mapReady" class="spinner"></mat-spinner>
+
+
+<div *ngIf="mapReady" class="map"
+     leaflet
+     [leafletOptions]="options"
+     (leafletMapReady)="onMapReady($event)"
+     [leafletCenter]="leafletCenter"
+     >
+<button mat-raised-button (click)="goToBeijing()" class="beijingButton">Go to Beijing</button>
+<button mat-raised-button (click)="goToHannover()">Go to Hannover</button>
+</div>

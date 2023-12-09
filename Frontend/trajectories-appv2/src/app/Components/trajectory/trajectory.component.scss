@@ -1,0 +1,54 @@
+/* trajectory.component.css */
+.card {
+  margin: auto;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  width: 90%;
+}
+
+mat-list-item {
+  padding: 5px;
+}
+
+mat-grid-list {
+  width: 95%;
+  margin: auto;
+  height: 90%;
+  margin-bottom: 10px;
+}
+.headerClass{
+  font-size:x-large;
+  border-bottom: 3px solid rgb(26, 11, 82);
+}
+.tile {
+
+  font-size: larger;
+  padding: 5px;
+}
+.smallCard{
+  border: 1px solid #ccc;
+  margin: 10px;
+}
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+li {
+  margin-bottom: 5px;
+}
+
+mat-card-content{
+  display:flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.map {
+  width: 100vw;
+  height: 100vh
+}
+
+.spinner {
+  margin:auto;
+}
