@@ -7,17 +7,17 @@ namespace Backend.Model.Mongo
     {
         [BsonIgnoreIfNull]
         [BsonIgnoreIfDefault]
-        public ObjectId? Id { get; set; }
+        public ObjectId? Id {get; set;}
         public string IdInFile { get; set; }
         [BsonIgnoreIfNull]
-        public DateTime StartDate { get; set; }
-        public DateTime EndDate { get; set; }
+        public DateTime StartDate {get; set;}
+        public DateTime EndDate {get; set;}
         [BsonRepresentation(BsonType.Decimal128)]
-        public decimal AverageSpeed { get; set; }
+        public decimal AverageSpeed {get; set;}
         [BsonRepresentation(BsonType.Decimal128)]
-        public decimal Duration { get; set; }
+        public decimal Duration {get; set;}
         [BsonRepresentation(BsonType.Decimal128)]
-        public decimal Length { get; set; }
+        public decimal Length {get; set;}
         public string city { get; set; }
         public Weather Weather { get; set; }
         [BsonIgnoreIfNull]

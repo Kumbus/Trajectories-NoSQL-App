@@ -15,7 +15,7 @@ export class SharedDataService {
   currentAggregationFilter = this.aggregateSource.asObservable();
 
   setFilter(filter: SimpleQueryFilter) {
-    this.filterSource.next(filter);
+    this.filterSource.next(filter)
   }
 
   setAggregationFilter(filter: AggregationFilter) {

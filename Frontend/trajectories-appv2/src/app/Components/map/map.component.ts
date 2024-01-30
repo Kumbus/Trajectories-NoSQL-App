@@ -57,10 +57,7 @@ export class MapComponent implements OnInit
     "radius": 8,
     "maxOpacity": 1,
     "scaleRadius": false,
-    // property below is responsible for colorization of heat layer
     "useLocalExtrema": true,
-    // here we need to assign property value which represent lat in our data
     latField: 'lat',
-    // here we need to assign property value which represent lng in our data
     lngField: 'lng',
   };

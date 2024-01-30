@@ -51,6 +51,5 @@
         public List<decimal>? RegionAreaRanges { get; set; }
         public List<decimal>? RegionPopulationRanges { get; set; }
         public List<decimal>? RegionDensityRanges { get; set; }
-
     }
 }

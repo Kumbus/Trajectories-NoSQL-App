@@ -1,4 +1,4 @@
-<mat-card class="form-container">
+<mat-card class="form-container" >
   <form [formGroup]="aggregationsForm" (ngSubmit)="onSubmit()" class="form-container">
 
 
@@ -24,7 +24,7 @@
       </div>
       <div>
         <div *ngFor="let field of rangesGroupFields2; let i = index">
-          <mat-label>{{ getLabelForField(field) }}</mat-label>
+          <mat-label>{{ getLabelForField(field) | titlecase}}</mat-label>
           <mat-slide-toggle formControlName="{{ field }}">  </mat-slide-toggle>
           <mat-form-field appearance="fill">
             <mat-label>{{getLabelForField(rangeFields[i+6]) | titlecase}}</mat-label>
@@ -45,7 +45,6 @@
 <mat-progress-bar *ngIf="!showResults" mode="indeterminate"></mat-progress-bar>
 
 <div *ngIf="showResults">
-  <!-- your-component.component.html -->
   <div class="info-container">
     <div class="info-item">
       <mat-label>Total Aggregations:</mat-label>
@@ -55,29 +54,29 @@
 
     <div class="info-item">
       <mat-label>Full Time (MongoDB):</mat-label>
-      {{fullTimeMongoDB}}
+      {{fullTimeMongoDB}} ms
     </div>
 
     <div class="info-item">
-      <mat-label>Full Time (CosmosDB):</mat-label>
-      {{fullTimeCosmosDB}}
+      <mat-label>Full Time (Cosmos DB):</mat-label>
+      {{fullTimeCosmosDB}} ms
     </div>
 
     <div class="info-item">
       <mat-label>Query Time (MongoDB):</mat-label>
-      {{queryTimeMongoDB}}
+      {{queryTimeMongoDB}} ms
     </div>
 
     <div class="info-item">
-      <mat-label>Query Time (CosmosDB):</mat-label>
-      {{queryTimeCosmosDB}}
+      <mat-label>Query Time (Cosmos DB):</mat-label>
+      {{queryTimeCosmosDB}} ms
     </div>
   </div>
-  <!-- Other content... -->
+
   <div class="mat-elevation-z8">
     <mat-table [dataSource]="dataSource" matSort >
 
-      <!-- Add columns based on displayedColumns array -->
+
       <ng-container *ngFor="let column of displayedColumns" [matColumnDef]="column">
         <mat-header-cell *matHeaderCellDef mat-sort-header> {{ getLabelForField(column) | titlecase }} </mat-header-cell>
         <mat-cell *matCellDef="let element">
@@ -88,13 +87,10 @@
       </ng-container>
 
 
-      <!-- Column definitions -->
-
       <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
       <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
     </mat-table>
 
-    <!-- Paginator -->
     <mat-paginator [pageSizeOptions]="pageSizeOptions"  showFirstLastButtons></mat-paginator>
 
   </div>

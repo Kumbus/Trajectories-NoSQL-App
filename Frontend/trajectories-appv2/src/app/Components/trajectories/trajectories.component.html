@@ -1,7 +1,4 @@
-<!-- filter-form.component.html -->
-
 <form [formGroup]="filterForm" (ngSubmit)="onSubmit()" class="form-container">
-  <!-- SimpleQueryFilter Fields -->
   <div class="form-row">
     <mat-form-field class="form-field">
       <mat-label>Cities</mat-label>
@@ -60,7 +57,6 @@
     </mat-form-field>
   </div>
 
-  <!-- WeatherFilter Fields -->
   <div formGroupName="weatherFilter">
     <div class="form-row">
       <mat-form-field class="form-field">
@@ -130,7 +126,7 @@
       </mat-form-field>
     </div>
   </div>
-  <!-- PointFilter Fields -->
+
   <div class="form-row" formGroupName="pointFilter">
     <mat-form-field class="form-field">
       <mat-label>Area From</mat-label>
@@ -184,7 +180,7 @@
 
 
 <div *ngIf="showResults">
-  <!-- your-component.component.html -->
+
   <div class="info-container">
     <div class="info-item">
       <mat-label>Total Trajectories:</mat-label>
@@ -194,38 +190,37 @@
 
     <div class="info-item">
       <mat-label>Full Time (MongoDB):</mat-label>
-      {{fullTimeMongoDB}}
+      {{fullTimeMongoDB}} ms
     </div>
 
     <div class="info-item">
-      <mat-label>Full Time (CosmosDB):</mat-label>
-      {{fullTimeCosmosDB}}
+      <mat-label>Full Time (Cosmos DB):</mat-label>
+      {{fullTimeCosmosDB}} ms
     </div>
 
     <div class="info-item">
       <mat-label>Query Time (MongoDB):</mat-label>
-      {{queryTimeMongoDB}}
+      {{queryTimeMongoDB}} ms
     </div>
 
     <div class="info-item">
-      <mat-label>Query Time (CosmosDB):</mat-label>
-      {{queryTimeCosmosDB}}
+      <mat-label>Query Time (Cosmos DB):</mat-label>
+      {{queryTimeCosmosDB}} ms
     </div>
   </div>
-  <!-- Other content... -->
+
   <div class="mat-elevation-z8">
     <mat-table [dataSource]="dataSource" matSort >
 
-      <!-- Add columns based on displayedColumns array -->
       <ng-container *ngFor="let column of displayedColumns" [matColumnDef]="column">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{ column }} </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{ getLabelForField(column) | titlecase }} </mat-header-cell>
         <mat-cell *matCellDef="let element">
-          <!-- Check if it's the last column -->
+
           <ng-container *ngIf="column !== 'details'; else detailsButton">
             {{ element[column] }}
           </ng-container>
           <ng-template #detailsButton>
-            <!-- Add a button in the last column -->
+
             <button mat-icon-button color="primary" (click)="openDetails(element['idInFile'])">
               <mat-icon>info</mat-icon>
             </button>
@@ -233,32 +228,13 @@
         </mat-cell>
       </ng-container>
 
-
-      <!-- Column definitions -->
-
       <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
       <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
     </mat-table>
 
-    <!-- Paginator -->
     <mat-paginator [pageSizeOptions]="pageSizeOptions" [pageSize]="pageSize" [pageIndex]="pageIndex" (page)="onPageChange($event)" showFirstLastButtons></mat-paginator>
 
   </div>
 
 </div>
 
-<!-- <mat-card class="example-result-card">
-      <mat-card-content>
-        <mat-label>Average Speed From </mat-label>
-        <div class="example-label-container">
-          <label id="example-name-label" class="example-name-label">Value</label>
-          <label class="example-value-label">{{sliderFrom.value}}</label>
-          <label class="example-value-label">{{sliderTo.value}}</label>
-        </div>
-        <mat-slider min="0" max="100">
-          <input  formControlName="averageSpeedFrom" matSliderStartThumb #sliderFrom>
-          <input  formControlName="averageSpeedTo" matSliderEndThumb #sliderTo>
-        </mat-slider>
-
-    </mat-card-content>
-  </mat-card>-->

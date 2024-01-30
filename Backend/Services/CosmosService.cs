@@ -96,7 +96,7 @@ namespace Backend.Services
                 EndDateDayOfMonth = aggregateQueryFilter.GroupFields.GroupByEndDateDayOfMonth == true ? (int?)t.EndDate.Day : null,
                 EndDateDayOfWeek = aggregateQueryFilter.GroupFields.GroupByEndDateDayOfWeek == true ? (int?)t.EndDate.DayOfWeek : null,
                 EndDateHour = aggregateQueryFilter.GroupFields.GroupByEndDateHour == true ? (int?)t.EndDate.Hour : null,
-                //Region = aggregateQueryFilter.GroupFields.GroupByRegion == true ? t.Points.MaxBy(p => p.Region?.Name)?.Region?.Name : null,
+                Region = aggregateQueryFilter.GroupFields.GroupByRegion == true ? t.Points.MaxBy(p => p.Region?.Name)?.Region?.Name : null,
                 DurationRange = aggregateQueryFilter.GroupFields.GroupByDuration == true && aggregateQueryFilter.Ranges.DurationRanges != null ? GetRange(t.Duration, aggregateQueryFilter.Ranges.DurationRanges, "Duration") : null,
                 LengthRange = aggregateQueryFilter.GroupFields.GroupByLength == true && aggregateQueryFilter.Ranges.LengthRanges != null ? GetRange(t.Length, aggregateQueryFilter.Ranges.LengthRanges, "Length") : null,
                 AverageSpeedRange = aggregateQueryFilter.GroupFields.GroupByAverageSpeed == true && aggregateQueryFilter.Ranges.AverageSpeedRanges != null ? GetRange(t.AverageSpeed, aggregateQueryFilter.Ranges.AverageSpeedRanges, "Average Speed") : null,
@@ -121,7 +121,7 @@ namespace Backend.Services
                 EndDateDayOfMonth = group.Key.EndDateDayOfMonth,
                 EndDateDayOfWeek = group.Key.EndDateDayOfWeek + 1,
                 EndDateHour = group.Key.EndDateHour,
-                //Region = group.Key.Region,
+                Region = group.Key.Region,
                 DurationRange = group.Key.DurationRange,
                 LengthRange = group.Key.LengthRange,
                 AverageSpeedRange = group.Key.AverageSpeedRange,
@@ -176,7 +176,7 @@ namespace Backend.Services
 
         public ExpressionStarter<CosmosTrajectory> CreateFilter(SimpleQueryFilter simpleQueryFilter)
         {
-            var predicate = PredicateBuilder.New<CosmosTrajectory>(true);
+            ExpressionStarter<CosmosTrajectory> predicate = PredicateBuilder.New<CosmosTrajectory>(true);
 
             if (simpleQueryFilter.Cities != null && simpleQueryFilter.Cities.Count > 0)
                 predicate = predicate.And(t => simpleQueryFilter.Cities.Contains(t.city));
@@ -211,7 +211,6 @@ namespace Backend.Services
             if (simpleQueryFilter.EndDateTo != null)
                 predicate = predicate.And(t => t.EndDate <= simpleQueryFilter.EndDateTo);
 
-            // Weather conditions
             if (simpleQueryFilter.WeatherFilter != null)
             {
                 if (simpleQueryFilter.WeatherFilter.TemperatureFrom != null)
@@ -254,7 +253,6 @@ namespace Backend.Services
                     predicate = predicate.And(t => t.Weather.WindDirection != null && simpleQueryFilter.WeatherFilter.WindDirections.Contains(t.Weather.WindDirection));
             }
 
-            // PointWeather conditions
             if (simpleQueryFilter.PointFilter != null)
             {
                 if (simpleQueryFilter.PointFilter.AreaFrom != null)

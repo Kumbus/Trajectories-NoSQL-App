@@ -5,10 +5,6 @@ namespace Backend.Model
 {
     public class AggregateQueryResult
     {
-        //[BsonIgnoreIfNull]
-        //[BsonIgnoreIfDefault]
-        //public ObjectId? Id { get; set; }
-
         public string? City { get; set; }
         public int? StartDateYear { get; set; }
         public int? StartDateMonth { get; set; }

@@ -17,8 +17,9 @@ export class TrajectoryComponent implements OnInit{
   endPoint: any
 
   constructor(private _apiService: ApiService,private route:ActivatedRoute){}
+
   ngOnInit(): void {
-    this.route.params.subscribe( params =>
+    this.route.params.subscribe(params =>
       {
         this._apiService.trajectory(params['id']).subscribe((trajectory:any) => {
           this.trajectory = trajectory
@@ -32,7 +33,6 @@ export class TrajectoryComponent implements OnInit{
             })
           });
 
-          // Marker for the parking lot at the base of Mt. Ranier trails
           this.endPoint = marker([ trajectory.points[trajectory.points.length-1]?.latitude, trajectory.points[trajectory.points.length-1]?.longitude ], {
             icon: icon({
               iconSize: [ 25, 41 ],

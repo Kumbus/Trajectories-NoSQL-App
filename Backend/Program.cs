@@ -16,7 +16,6 @@ builder.Services.AddAutoMapper(typeof(MappingProfile));
 builder.Services.AddControllers().AddNewtonsoftJson(options =>
 {
     options.SerializerSettings.NullValueHandling = NullValueHandling.Ignore;
-    //options.SerializerSettings.DefaultValueHandling = DefaultValueHandling.Ignore;
 });
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();

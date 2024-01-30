@@ -92,7 +92,6 @@ export class TrajectoriesComponent implements OnInit {
       this.filterForm.controls['endDateFrom'].setValue(filter?.endDateFrom);
       this.filterForm.controls['endDateTo'].setValue(filter?.endDateTo);
 
-      // WeatherFilter controls
       const weatherFilter = filter?.weatherFilter;
       if (weatherFilter) {
         this.filterForm.get('weatherFilter.temperatureFrom')?.setValue(weatherFilter.temperatureFrom);
@@ -110,7 +109,6 @@ export class TrajectoriesComponent implements OnInit {
         this.filterForm.get('weatherFilter.windDirections')?.setValue(weatherFilter.windDirections?.join(', '));
       }
 
-      // PointFilter controls
       const pointFilter = filter?.pointFilter;
       if (pointFilter) {
         this.filterForm.get('pointFilter.areaFrom')?.setValue(pointFilter.areaFrom);
@@ -132,24 +130,26 @@ export class TrajectoriesComponent implements OnInit {
     this.showResults = false
     this.paginator.pageIndex = 0
     let filter = this.createFilter()
+
     if (this.paginator) {
-      filter.page = this.paginator.pageIndex + 1; // Pages are 1-based, so add 1
+      filter.page = this.paginator.pageIndex + 1;
     }
-    console.log(filter.page)
-    this._apiService.trajectories(filter).subscribe((trajectories: any)=> {
-      console.log(trajectories.item1.count)
+
+    this._apiService.trajectories(filter).subscribe((trajectories: any) => {
+
       this.totalTrajectories = trajectories.item1.count;
-      this.fullTimeMongoDB = trajectories.item1.fullTime;  // Update with actual property names from your API response
-      this.fullTimeCosmosDB = trajectories.item2.fullTime;  // Update with actual property names from your API response
-      this.queryTimeMongoDB = trajectories.item1.queryTime;  // Update with actual property names from your API response
+      this.fullTimeMongoDB = trajectories.item1.fullTime;
+      this.fullTimeCosmosDB = trajectories.item2.fullTime;
+      this.queryTimeMongoDB = trajectories.item1.queryTime;
       this.queryTimeCosmosDB = trajectories.item2.queryTime;
+
       setTimeout(() => {
         this.paginator.length = trajectories.item1.count
         this.paginator.pageIndex = 0
       })
+
       this.dataSource.data = trajectories.item1.results;
       this.dataSource.paginator = this.paginator
-      this.dataSource.sort = this.sort;
 
       this.showResults = true
     })
@@ -169,8 +169,11 @@ export class TrajectoriesComponent implements OnInit {
       })
       this.dataSource.data = trajectories.item1.results;
       this.showResults = true
-      //this.dataSource.paginator = this.paginator
     })
+  }
+  getLabelForField(field: string): string {
+
+    return field.replace(/([A-Z])/g, ' $1').trim();
   }
 
   openMap() {
@@ -186,7 +189,6 @@ export class TrajectoriesComponent implements OnInit {
   }
 
   openDetails(id: string) {
-    // Navigate to /idinfile with the trajectory ID as a parameter
     const filter = this.createFilter()
     this._sharedDataService.setFilter(filter);
     this.router.navigate(['/trajectory', id]);

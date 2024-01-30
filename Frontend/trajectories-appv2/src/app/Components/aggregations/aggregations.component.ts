@@ -66,8 +66,6 @@ export class AggregationsComponent implements OnInit{
   paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  //pageSize = 20;
-  //pageIndex = 0;
   pageSizeOptions = [20,50,100];
 
   totalAggregations: number = 0;
@@ -123,12 +121,8 @@ export class AggregationsComponent implements OnInit{
 
   onSubmit() {
     this.showResults = false
-    //this.paginator.pageIndex = 0
     let filter = this.createFilter()
-    if (this.paginator) {
-      //filter.page = this.paginator.pageIndex + 1; // Pages are 1-based, so add 1
-    }
-    //console.log(filter.page)
+
     this._apiService.aggregations(filter).subscribe((trajectories: any)=> {
       console.log(trajectories.item1.count)
       this.totalAggregations = trajectories.item1.count;

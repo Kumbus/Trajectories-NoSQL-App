@@ -15,9 +15,7 @@
         public DateTime? EndDateTo { get; set; }
         public WeatherFilter? WeatherFilter { get; set; }
         public PointFilter? PointFilter { get; set; }
-
         public int Page {  get; set; } = 1;
-
     }
 
     public class WeatherFilter

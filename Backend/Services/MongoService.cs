@@ -111,8 +111,8 @@ namespace Backend.Services
         }
         public FilterDefinition<MongoTrajectory> CreateFilter(SimpleQueryFilter simpleQueryFilter)
         {
-            var filterBuilder = Builders<MongoTrajectory>.Filter;
-            var filter = filterBuilder.Empty;
+            FilterDefinitionBuilder<MongoTrajectory> filterBuilder = Builders<MongoTrajectory>.Filter;
+            FilterDefinition<MongoTrajectory> filter = filterBuilder.Empty;
 
             if (simpleQueryFilter.Cities != null && simpleQueryFilter.Cities.Count > 0)
                 filter &= filterBuilder.In(t => t.city, simpleQueryFilter.Cities);
@@ -147,7 +147,6 @@ namespace Backend.Services
             if (simpleQueryFilter.EndDateTo != null)
                 filter &= filterBuilder.Lte(t => t.EndDate, simpleQueryFilter.EndDateTo);
 
-            // WeatherFilter conditions
             if (simpleQueryFilter.WeatherFilter != null)
             {
                 if (simpleQueryFilter.WeatherFilter.TemperatureFrom != null)
@@ -190,7 +189,6 @@ namespace Backend.Services
                     filter &= filterBuilder.In(t => t.Weather.WindDirection, simpleQueryFilter.WeatherFilter.WindDirections);
             }
 
-            // PointFilter conditions
             if (simpleQueryFilter.PointFilter != null)
             {
                 if (simpleQueryFilter.PointFilter.AreaFrom != null)
